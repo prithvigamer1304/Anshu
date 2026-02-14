@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For Anshu Chaudhary</title>
+
+<style>
+body {
+  margin:0;
+  overflow:hidden;
+  font-family: Arial;
+  background: linear-gradient(135deg,#ff9ecf,#ff4e8a);
+  color:white;
+  text-align:center;
+}
+
+.card{
+  position:relative;
+  top:20vh;
+  font-size:22px; /* half size */
+}
+
+button{
+  padding:10px 20px;
+  font-size:18px;
+  margin:15px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.yes{background:#4CAF50;}
+.no{background:#f44336;}
+
+.float{
+  position:absolute;
+  font-size:16px;
+  opacity:0.8;
+  animation:rise 12s linear infinite;
+}
+
+@keyframes rise{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
+}
+
+.gif{
+  width:200px;
+  margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="main">
+Iss GELSAPA ladke ko ek mauka do,<br>
+will you be my valentine 🥰😘?
+<br>
+<button class="yes" id="yes">YES 😍</button>
+<button class="no" id="no">NO 😒</button>
+</div>
+
+<script>
+
+let yesCount=0;
+
+const yesBtn=document.getElementById("yes");
+const noBtn=document.getElementById("no");
+
+function run(btn){
+  btn.style.position="absolute";
+  btn.style.left=Math.random()*80+"vw";
+  btn.style.top=Math.random()*80+"vh";
+}
+
+yesBtn.onmouseover=()=>run(yesBtn);
+noBtn.onmouseover=()=>run(noBtn);
+
+yesBtn.onclick=()=>{
+  yesCount++;
+
+  if(yesCount===1){
+    alert("Rukho jara, sabar karo!");
+  }
+
+  else if(yesCount===2){
+    document.getElementById("main").innerHTML=
+    "Nahi<br><img class='gif' src='https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif'>";
+  }
+
+  else if(yesCount===3){
+    alert("Pakka, soch lo, abhi bhi mauka hai!");
+  }
+
+  else if(yesCount===4){
+    document.getElementById("main").innerHTML=
+    "Chalo theek hai, ek try toh banta hai";
+    document.body.onclick=finalMsg;
+  }
+};
+
+function finalMsg(){
+  document.body.onclick=null;
+  document.getElementById("main").innerHTML=
+  "Aree nahi nahi, Aunty ji se darr lagta hai😬!<br><br>"+
+  "Abhi nahi, next year try again, tab tak message karte raho<br><br>"+
+  "<a href='https://wa.me/919619756863' style='color:white;font-size:20px;'>Message on WhatsApp</a>";
+}
+
+/* floating food + text */
+
+const items=[
+"🍕","🍔","🍫","🍩","🍉","🍓",
+"Aaj kya khana khaya",
+"Aaj mera sarr dukh raha hai",
+"Aaj bohot thak gayi",
+"Khushboo ne fir se jhagda kiya"
+];
+
+setInterval(()=>{
+  const d=document.createElement("div");
+  d.className="float";
+  d.style.left=Math.random()*100+"vw";
+  d.innerText=items[Math.floor(Math.random()*items.length)];
+  document.body.appendChild(d);
+  setTimeout(()=>d.remove(),12000);
+},900);
+
+</script>
+
+</body>
+</html>
