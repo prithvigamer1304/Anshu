@@ -56,7 +56,7 @@ button{
   to{transform:translateY(-10vh);}
 }
 
-.img{
+.gif{
   width:200px;
   margin-top:10px;
   border-radius:10px;
@@ -91,28 +91,28 @@ const yesBtn=document.getElementById("yes");
 const noBtn=document.getElementById("no");
 const bubble=document.getElementById("bubble");
 
-/* NO runaway + messages */
+/* NO runaway + POPUPS */
 
 function runNo(){
+
   noBtn.style.position="absolute";
   noBtn.style.left=Math.random()*85+"vw";
   noBtn.style.top=Math.random()*85+"vh";
 
   noCount++;
 
-  if(noCount===3){
-    bubble.innerHTML="Arre, itni ziddi😛";
-  }
-  else if(noCount>3){
-    const emojis=["😂","😜","🤭","🙄","😆","😝"];
-    bubble.innerHTML="Firse "+emojis[Math.floor(Math.random()*emojis.length)];
+  if(noCount===1){
+    alert("Arre, maanti hi nahi 😤");
+  }else{
+    const emojis=["😂","😜","🤭","🙄","😆","😝","😹"];
+    alert("Firse "+emojis[Math.floor(Math.random()*emojis.length)]);
   }
 }
 
 noBtn.onmouseover=runNo;
 noBtn.onclick=runNo;
 
-/* YES staged logic */
+/* YES staged */
 
 yesBtn.onclick=()=>{
 
@@ -124,7 +124,7 @@ if(yesCount===1){
 
 else if(yesCount===2){
   bubble.innerHTML=
-  "Nahi<br><img class='img' src='nahi.jpg'>";
+  "Nahi<br><img class='gif' src='https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif'>";
 }
 
 else if(yesCount===3){
@@ -138,7 +138,7 @@ else if(yesCount===4){
 
 };
 
-/* Final screen */
+/* Final */
 
 function finalMsg(){
   document.body.onclick=null;
@@ -149,7 +149,7 @@ function finalMsg(){
   "<a href='https://wa.me/919619756863' style='color:white;font-size:20px;'>Message on WhatsApp</a>";
 }
 
-/* floating background text */
+/* floating background */
 
 const items=[
 "🍕","🍔","🍫","🍩","🍉","🍓",
