@@ -5,11 +5,11 @@
 <title>For Anshu Chaudhary</title>
 
 <style>
-body {
+body{
   margin:0;
   overflow:hidden;
-  font-family: Arial;
-  background: linear-gradient(135deg,#ff9ecf,#ff4e8a);
+  font-family:Arial;
+  background:linear-gradient(135deg,#ff9ecf,#ff4e8a);
   color:white;
   text-align:center;
 }
@@ -17,7 +17,7 @@ body {
 .card{
   position:relative;
   top:20vh;
-  font-size:22px; /* half size */
+  font-size:22px;
 }
 
 button{
@@ -35,7 +35,7 @@ button{
 .float{
   position:absolute;
   font-size:16px;
-  opacity:0.8;
+  opacity:0.85;
   animation:rise 12s linear infinite;
 }
 
@@ -68,14 +68,17 @@ let yesCount=0;
 const yesBtn=document.getElementById("yes");
 const noBtn=document.getElementById("no");
 
-function run(btn){
-  btn.style.position="absolute";
-  btn.style.left=Math.random()*80+"vw";
-  btn.style.top=Math.random()*80+"vh";
-}
+/* NO button runaway */
 
-yesBtn.onmouseover=()=>run(yesBtn);
-noBtn.onmouseover=()=>run(noBtn);
+noBtn.onmouseover=()=>{
+  noBtn.style.position="absolute";
+  noBtn.style.left=Math.random()*80+"vw";
+  noBtn.style.top=Math.random()*80+"vh";
+};
+
+noBtn.onclick=()=>noBtn.onmouseover();
+
+/* YES staged logic */
 
 yesBtn.onclick=()=>{
   yesCount++;
@@ -95,10 +98,12 @@ yesBtn.onclick=()=>{
 
   else if(yesCount===4){
     document.getElementById("main").innerHTML=
-    "Chalo theek hai, ek try toh banta hai";
+    "Chalo theek hai, ek try toh banta hai<br><br>(tap anywhere)";
     document.body.onclick=finalMsg;
   }
 };
+
+/* Final screen */
 
 function finalMsg(){
   document.body.onclick=null;
@@ -108,7 +113,7 @@ function finalMsg(){
   "<a href='https://wa.me/919619756863' style='color:white;font-size:20px;'>Message on WhatsApp</a>";
 }
 
-/* floating food + text */
+/* Floating foods + texts */
 
 const items=[
 "🍕","🍔","🍫","🍩","🍉","🍓",
