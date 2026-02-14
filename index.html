@@ -16,7 +16,7 @@ body{
 
 .card{
   position:relative;
-  top:20vh;
+  top:22vh;
   font-size:22px;
 }
 
@@ -32,6 +32,19 @@ button{
 .yes{background:#4CAF50;}
 .no{background:#f44336;}
 
+.bubble{
+  position:absolute;
+  bottom:70px;
+  left:50%;
+  transform:translateX(-50%);
+  background:white;
+  color:black;
+  padding:10px;
+  border-radius:10px;
+  font-size:16px;
+  width:240px;
+}
+
 .float{
   position:absolute;
   font-size:16px;
@@ -45,8 +58,8 @@ button{
 }
 
 .gif{
-  width:200px;
-  margin-top:15px;
+  width:180px;
+  margin-top:8px;
 }
 </style>
 </head>
@@ -57,8 +70,14 @@ button{
 Iss GELSAPA ladke ko ek mauka do,<br>
 will you be my valentine 🥰😘?
 <br>
+
+<div id="bubble" class="bubble">
+Click YES 😌
+</div>
+
 <button class="yes" id="yes">YES 😍</button>
 <button class="no" id="no">NO 😒</button>
+
 </div>
 
 <script>
@@ -67,53 +86,57 @@ let yesCount=0;
 
 const yesBtn=document.getElementById("yes");
 const noBtn=document.getElementById("no");
+const bubble=document.getElementById("bubble");
 
-/* NO button runaway */
+/* Deepashree NO physics */
 
-noBtn.onmouseover=()=>{
+function runNo(){
   noBtn.style.position="absolute";
-  noBtn.style.left=Math.random()*80+"vw";
-  noBtn.style.top=Math.random()*80+"vh";
-};
+  noBtn.style.left=Math.random()*85+"vw";
+  noBtn.style.top=Math.random()*85+"vh";
+}
 
-noBtn.onclick=()=>noBtn.onmouseover();
+noBtn.onmouseover=runNo;
+noBtn.onclick=runNo;
 
-/* YES staged logic */
+/* YES staged bubble messages */
 
 yesBtn.onclick=()=>{
-  yesCount++;
 
-  if(yesCount===1){
-    alert("Rukho jara, sabar karo!");
-  }
+yesCount++;
 
-  else if(yesCount===2){
-    document.getElementById("main").innerHTML=
-    "Nahi<br><img class='gif' src='https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif'>";
-  }
+if(yesCount===1){
+  bubble.innerHTML="Rukho jara, sabar karo!";
+}
 
-  else if(yesCount===3){
-    alert("Pakka, soch lo, abhi bhi mauka hai!");
-  }
+else if(yesCount===2){
+  bubble.innerHTML=
+  "Nahi<br><img class='gif' src='https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif'>";
+}
 
-  else if(yesCount===4){
-    document.getElementById("main").innerHTML=
-    "Chalo theek hai, ek try toh banta hai<br><br>(tap anywhere)";
-    document.body.onclick=finalMsg;
-  }
+else if(yesCount===3){
+  bubble.innerHTML="Pakka, soch lo, abhi bhi mauka hai!";
+}
+
+else if(yesCount===4){
+  bubble.innerHTML="Chalo theek hai, ek try toh banta hai<br>(tap screen)";
+  document.body.onclick=finalMsg;
+}
+
 };
 
 /* Final screen */
 
 function finalMsg(){
   document.body.onclick=null;
+
   document.getElementById("main").innerHTML=
   "Aree nahi nahi, Aunty ji se darr lagta hai😬!<br><br>"+
-  "Abhi nahi, next year try again, tab tak message karte raho<br><br>"+
+  "Abhi nahi, next year try again,<br>tab tak message karte raho<br><br>"+
   "<a href='https://wa.me/919619756863' style='color:white;font-size:20px;'>Message on WhatsApp</a>";
 }
 
-/* Floating foods + texts */
+/* Floating Deepashree texts */
 
 const items=[
 "🍕","🍔","🍫","🍩","🍉","🍓",
