@@ -66,6 +66,11 @@ button{
 
 <body>
 
+<!-- background music -->
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6c9f5f2c1d.mp3">
+</audio>
+
 <div class="card" id="main">
 
 <div id="bubble" class="bubble">
@@ -91,26 +96,31 @@ const yesBtn=document.getElementById("yes");
 const noBtn=document.getElementById("no");
 const bubble=document.getElementById("bubble");
 
-/* NO runaway + POPUPS */
+/* Deepashree NO engine */
 
-function runNo(){
-
+function moveNo(){
+  const x=Math.random()*(window.innerWidth-100);
+  const y=Math.random()*(window.innerHeight-60);
   noBtn.style.position="absolute";
-  noBtn.style.left=Math.random()*85+"vw";
-  noBtn.style.top=Math.random()*85+"vh";
+  noBtn.style.left=x+"px";
+  noBtn.style.top=y+"px";
+}
 
+function noPopup(){
   noCount++;
-
   if(noCount===1){
-    alert("Arre, maanti hi nahi 😤");
+    setTimeout(()=>alert("Arre, maanti hi nahi 😤"),50);
   }else{
-    const emojis=["😂","😜","🤭","🙄","😆","😝","😹"];
-    alert("Firse "+emojis[Math.floor(Math.random()*emojis.length)]);
+    const emojis=["😂","😜","🤭","😆","😝","🤣","😹"];
+    setTimeout(()=>alert("Firse "+emojis[Math.floor(Math.random()*emojis.length)]),50);
   }
 }
 
-noBtn.onmouseover=runNo;
-noBtn.onclick=runNo;
+noBtn.addEventListener("mouseover",moveNo);
+noBtn.addEventListener("click",()=>{
+  moveNo();
+  noPopup();
+});
 
 /* YES staged */
 
@@ -138,7 +148,7 @@ else if(yesCount===4){
 
 };
 
-/* Final */
+/* Final screen */
 
 function finalMsg(){
   document.body.onclick=null;
@@ -149,7 +159,7 @@ function finalMsg(){
   "<a href='https://wa.me/919619756863' style='color:white;font-size:20px;'>Message on WhatsApp</a>";
 }
 
-/* floating background */
+/* Floating background */
 
 const items=[
 "🍕","🍔","🍫","🍩","🍉","🍓",
